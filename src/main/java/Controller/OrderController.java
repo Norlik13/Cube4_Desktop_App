@@ -3,7 +3,6 @@ package Controller;
 import Model.Orders;
 import Model.OrdersDetail;
 import Model.Wine;
-import Controller.WineController;
 import Util.ApiClient;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -15,9 +14,9 @@ import java.util.List;
 import java.util.Map;
 
 public class OrderController {
-	private ApiClient apiClient;
-	private Gson gson;
-	private WineController wineController = new WineController();
+	private final ApiClient apiClient;
+	private final Gson gson;
+	private final WineController wineController = new WineController();
 
 	public OrderController() {
 		this.apiClient = ApiClient.getInstance();
@@ -29,7 +28,6 @@ public class OrderController {
 			String response = apiClient.get("/orders/");
 			Type ordersListType = new TypeToken<List<Orders>>(){}.getType();
 			List<Orders> orders = gson.fromJson(response, ordersListType);
-
 			return orders;
 		} catch(IOException | InterruptedException e) {
 			e.printStackTrace();
