@@ -225,6 +225,14 @@ public class WineTab {
 			Wine selectedWine = tableView.getSelectionModel().getSelectedItem();
 			if (selectedWine != null) {
 				showWineDialog(selectedWine, "Modifier le vin", "Modifier les informations du vin: " + selectedWine.getCuvee_name());
+				boolean success = wineController.updateWine(selectedWine);
+				if (success) {
+					wineData.setAll(wineController.getAllWines());
+					tableView.refresh();
+					MainView.showAlert("Succès", "Vin modifié avec succès !");
+				} else {
+					MainView.showAlert("Erreur", "La modification du vin a échoué.");
+				}
 			} else {
 				MainView.showAlert("Avertissement", "Veuillez sélectionner un vin dans le tableau.");
 			}

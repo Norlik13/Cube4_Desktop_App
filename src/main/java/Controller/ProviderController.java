@@ -57,7 +57,6 @@ public class ProviderController {
 		}
 	}
 
-	// Delete a provider
 	public boolean deleteProvider(int idProvider) {
 		try {
 			apiClient.delete("/providers/" + idProvider);
